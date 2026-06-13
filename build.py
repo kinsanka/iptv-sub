@@ -1,20 +1,35 @@
 #!/usr/bin/env python3
-import urllib.request
+from urllib.request import urlopen
 
-SRC = "https://raw.githubusercontent.com/plsy1/iptv/main/unicast/unicast-rtp2httpd.m3u"
-DST = "output.m3u"
+TASKS = [
+    {
+        "src": "https://raw.githubusercontent.com/plsy1/iptv/main/unicast/unicast-rtp2httpd.m3u",
+        "dst": "output-unicast.m3u",
+        "old": "rtsp://",
+        "new": "https://cctv.speedtest.netynee.top:9999/rtsp/",
+    },
+    {
+        "src": "https://raw.githubusercontent.com/plsy1/iptv/main/multicast/multicast-jinan.m3u",
+        "dst": "output-multicast-jinan.m3u",
+        "old": "http://192.168.0.1:5140",
+        "new": "https://cctv.speedtest.netynee.top:9999",
+    },
+]
 
-PREFIX = "https://cctv.speedtest.netynee.top:9999/rtsp"
+def fetch_text(url: str) -> str:
+    with urlopen(url) as resp:
+        return resp.read().decode("utf-8", errors="ignore")
+
+def write_text(path: str, content: str) -> None:
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
+        f.write(content)
 
 def main():
-    content = urllib.request.urlopen(SRC).read().decode("utf-8", errors="ignore")
-
-    # 两种情况都兼容
-    content = content.replace("rtsp://", PREFIX + "/")
-    content = content.replace("rtsp:/", PREFIX)
-
-    with open(DST, "w", encoding="utf-8") as f:
-        f.write(content)
+    for task in TASKS:
+        content = fetch_text(task["src"])
+        content = content.replace(task["old"], task["new"])
+        write_text(task["dst"], content)
+        print(f'Generated {task["dst"]}')
 
 if __name__ == "__main__":
     main()
