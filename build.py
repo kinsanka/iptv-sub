@@ -3,16 +3,19 @@ from urllib.request import urlopen
 
 TASKS = [
     {
-        "src": "https://raw.githubusercontent.com/plsy1/iptv/main/unicast/unicast-rtp2httpd.m3u",
+        "src": "https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/SDU-Unicast.m3u",
         "dst": "output-unicast.m3u",
-        "old": "rtsp://",
-        "new": "https://cctv.speedtest.netynee.top:9999/rtsp/",
+        "replacements": [
+            ("rtsp://", "https://cctv.speedtest.netynee.top:9999/rtsp/"),
+        ],
     },
     {
-        "src": "https://raw.githubusercontent.com/plsy1/iptv/main/multicast/multicast-jinan.m3u",
+        "src": "https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/SDU-Multicast/SDU-Multicast-Jinan.m3u",
         "dst": "output-multicast-jinan.m3u",
-        "old": "http://192.168.0.1:5140",
-        "new": "https://cctv.speedtest.netynee.top:9999",
+        "replacements": [
+            ("http://192.168.100.1:5140", "https://cctv.speedtest.netynee.top:9999"),
+            ("rtsp://", "https://cctv.speedtest.netynee.top:9999/rtsp/"),
+        ],
     },
 ]
 
@@ -27,7 +30,8 @@ def write_text(path: str, content: str) -> None:
 def main():
     for task in TASKS:
         content = fetch_text(task["src"])
-        content = content.replace(task["old"], task["new"])
+        for old, new in task["replacements"]:
+            content = content.replace(old, new)
         write_text(task["dst"], content)
         print(f'Generated {task["dst"]}')
 
