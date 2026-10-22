@@ -33,6 +33,8 @@ https://cctv.speedtest.netynee.top:9999/rtp/239.253.242.236:8000?fcc=124.132.240
 https://cctv.speedtest.netynee.top:9999/rtp/239.253.242.170:8000?fcc=124.132.240.66:15970
 #EXTINF:-1 tvg-name="CCTV16" group-title="央视频道" tvg-logo="https://gh-proxy.org/https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/logo/CCTV16.png",CCTV16
 https://cctv.speedtest.netynee.top:9999/rtp/239.253.242.143:8000?fcc=124.132.240.66:15970
+#EXTINF:-1 tvg-name="CCTV16-4K" group-title="央视频道" tvg-logo="https://gh-proxy.org/https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/logo/CCTV16.png",CCTV16-4K
+https://cctv.speedtest.netynee.top:9999/rtp/239.253.242.155:8000?fcc=124.132.240.66:15970
 #EXTINF:-1 tvg-name="CCTV17" group-title="央视频道" tvg-logo="https://gh-proxy.org/https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/logo/CCTV17.png" catchup="default" catchup-source="https://cctv.speedtest.netynee.top:9999/rtsp/112.245.125.41:1554/iptv/Tvod/iptv/001/001/ch19073116233495000222.rsc?tvdr=${(b)yyyyMMddHHmmss}GMT-${(e)yyyyMMddHHmmss}GMT&r2h-seek-offset=-28800",CCTV17
 https://cctv.speedtest.netynee.top:9999/rtp/239.253.242.168:8000?fcc=124.132.240.66:15970
 #EXTINF:-1 tvg-name="CCTV4K" group-title="央视频道" tvg-logo="https://gh-proxy.org/https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/logo/CCTV4K.png",CCTV4K
